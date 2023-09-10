@@ -1,0 +1,39 @@
+*:focus {
+    outline: none !important;
+}
+.Mui-selected {
+    color: #01754f !important;
+    outline: none !important;
+  }
+  .MuiTabs-indicator{
+    background: #01754f !important;
+  }
+  .MuiButton-outlined{
+    border-color: #0a66c2 ! important;
+    border:3px solid #0a66c2 !important;
+  }
+
+
+
+  .home{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.editor{
+   width:90vw;
+   max-width:800px;
+   height:80vh;
+   display:flex;
+   flex-direction:column;
+   justify-content:center;
+   align-items:center;
+   border:3px solid black;
+}
+.photo-full{
+    height:50vh;
+    width:100%;
+    background-color:black;
+}
