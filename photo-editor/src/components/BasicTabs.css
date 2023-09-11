@@ -35,5 +35,10 @@
 .photo-full{
     height:50vh;
     width:100%;
-    background-color:black;
+    background-color:none;
+    position:relative;
+}
+img{
+  position:absolute;
+  z-index:-2;
 }
