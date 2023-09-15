@@ -62,3 +62,11 @@ img{
     left: 0;
     z-index: 50;
 }
+
+.rcp-root{
+  width: 250px;
+}
+
+.rcp-section:nth-of-type(2) {
+  display: none;
+}

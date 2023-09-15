@@ -15,6 +15,9 @@ import CropIcon from '@mui/icons-material/Crop';
 
 import { ScreenCapture } from 'react-screen-capture';
 
+import { ColorPicker, useColor } from "react-color-palette";
+import "react-color-palette/css";
+
 function valuetext(value) {
   return `${value}`;
 }
@@ -60,12 +63,32 @@ export default function BasicTabs() {
 
   let zoomin, zoomout, resettransform;//helps globalisation
 
+  const [needcolor,setNeedColor] = React.useState(false); 
+  const [color, setColor] = useColor("rgb(0 0 0)");
+  const [opacity, setOpacity] = React.useState(0);
+  const [bg,setBg] = React.useState("transparent");
+  
+
   const [value, setValue] = React.useState(0);
   const [topic, setTopic] = React.useState("Brightness");
   const [imageStyle, setImageStyle] = React.useState({
     filter: "brightness(100%)",
     boxShadow: "0 0 0px rgba(0, 0, 0, 0.5)",
   });
+
+  React.useEffect(() => {
+    console.log(color.rgb)
+    const { r, g, b } = color.rgb;
+
+    // Update the background color with opacity and extracted RGB values
+    const rgbaColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+    
+    if (r != undefined)
+    {
+      setBg(rgbaColor);
+      }
+    
+  }, [color, opacity]);
 
 {  /**const handleZoomChange = (event, newValue) => {
     // Calculate the difference between the new value and the previous value.
@@ -146,7 +169,7 @@ export default function BasicTabs() {
       <div className="editor">
 
 
-              <div className="photo-full" style={{ boxShadow: imageStyle.boxShadow }} >
+              <div className="photo-full" style={{ boxShadow: imageStyle.boxShadow ,backgroundColor:bg}} >
               <TransformWrapper>
                 {({ zoomIn, zoomOut, resetTransform, ...rest }) => {
                   zoomin = zoomIn;
@@ -259,8 +282,71 @@ export default function BasicTabs() {
 
     </Box>
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        Item Two
+              <CustomTabPanel value={value} index={1}>
+                <Box sx={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  position: "relative"
+                }}>
+                  <Button variant="contained" color="secondary"
+                    disabled={needcolor?true:false}
+                    sx={{ marginTop: "24px" }}
+                    onClick={() => { setOpacity(0.5); setNeedColor(true) }}>Select Color</Button>
+                                    
+{      /**           <Button variant="contained" color="secondary"
+                    onClick={() => { setBg("transparent")  }}>Cancel</Button>
+                  */  }
+                { needcolor&& <Box sx={{
+                    position: "absolute",
+                    zIndex: "2",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: "1px",
+                    backgroundColor: "black",
+                    padding: "10px",
+                    borderRadius: "10px",
+                    left: "50px",
+                  }}>
+                    <ColorPicker color={color} onChange={setColor} />
+                    <Button variant="contained" onClick={()=>{setNeedColor(false)}}>Done</Button>
+                  </Box>}
+                  <Box sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            width:"50%"
+          }}>
+            Opacity
+            <Box sx={{
+              display: "flex",
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+              gap:"10px"
+            }}>
+              <RemoveIcon fontSize='large'/>
+              <Slider
+        aria-label="Straighten"
+        defaultValue={0.5}
+        getAriaValueText={valuetext}
+            valueLabelDisplay="auto"
+            step={.1}
+            sx={{
+              color: "rgb(1,117,79)",
+              width:"70%"
+            }}
+        min={0}
+                    max={1}
+                    onChange={(e,newValue) =>{setOpacity(newValue)}}
+      />
+              <AddIcon fontSize='large'/>
+            </Box>
+          </Box>
+                </Box>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <Box sx={{

@@ -16,7 +16,11 @@
     "@mui/material": "^5.14.8",
     "html2canvas": "^1.4.1",
     "react": "^18.2.0",
+    "react-color-palette": "^7.1.0",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-images-uploading": "^3.1.7",
+    "react-router-dom": "^6.16.0",
     "react-screen-capture": "^1.1.1",
     "react-zoom-pan-pinch": "^3.1.0"
   },
