@@ -222,6 +222,7 @@ export default function BasicTabs() {
                             width: "100%",
                             height: "100%",
                             filter: imageStyle.filter,
+                            transform:imageStyle.transform
                           }} />
             
                       </TransformComponent>
@@ -300,7 +301,7 @@ export default function BasicTabs() {
               justifyContent: "center",
               gap:"10px"
             }}>
-              <RemoveIcon fontSize='large'/>
+              {/* <RemoveIcon fontSize='large'/> */}
               <Slider
         aria-label="Straighten"
         defaultValue={0}
@@ -315,7 +316,7 @@ export default function BasicTabs() {
                     max={45}
                     onChange={handleStraightenChange}
       />
-              <AddIcon fontSize='large'/>
+              {/* <AddIcon fontSize='large'/> */}
             </Box>
           </Box>
 
@@ -367,7 +368,7 @@ export default function BasicTabs() {
               justifyContent: "center",
               gap:"10px"
             }}>
-              <RemoveIcon fontSize='large'/>
+              {/* <RemoveIcon fontSize='large'/> */}
               <Slider
         aria-label="Straighten"
         defaultValue={0.5}
@@ -382,7 +383,7 @@ export default function BasicTabs() {
                     max={1}
                     onChange={(e,newValue) =>{setOpacity(newValue)}}
       />
-              <AddIcon fontSize='large'/>
+              {/* <AddIcon fontSize='large'/> */}
             </Box>
           </Box>
                 </Box>
@@ -490,12 +491,12 @@ export default function BasicTabs() {
       </CustomTabPanel>
     </Box>
     </div>
-      <Button variant="contained"  color="secondary" onClick={onStartCapture}>Capture</Button>
+      {/* <Button variant="contained"  color="secondary" onClick={onStartCapture}>Capture</Button>
 {     screenCapture &&  <> <img src={screenCapture} alt='react-screen-capture' />
               <p>
                <button onClick={handleSave}>Download</button>
               </p>
-              </>  }
+              </>  } */}
         </div>
                   )}
                   </ScreenCapture>
