@@ -78,6 +78,7 @@ export default function BasicTabs() {
   const [imageStyle, setImageStyle] = React.useState({});
 
   React.useEffect(() => {
+    console.log(imageStyle)
     console.log(color.rgb)
     const { r, g, b } = color.rgb;
 
@@ -134,12 +135,27 @@ export default function BasicTabs() {
       const filterValue = filterRange[0] + normalizedValue * (filterRange[1] - filterRange[0]);
   
       if (topic === "Brightness") {
-        updatedStyle.filter = `brightness(${filterValue}%)`;
+        updatedStyle.brightness = `${filterValue}%`;
       } else if (topic === "Contrast") {
-        updatedStyle.filter = `contrast(${filterValue}%)`;
+        updatedStyle.contrast = `${filterValue}%`;
       } else if (topic === "Saturation") {
-        updatedStyle.filter = `saturate(${filterValue}%)`;
+        updatedStyle.saturate = `${filterValue}%`;
       }
+
+      let filterProperties = [];
+
+      if (updatedStyle.brightness !== undefined) {
+        filterProperties.push(`brightness(${updatedStyle.brightness})`);
+      }
+      if (updatedStyle.contrast !== undefined) {
+        filterProperties.push(`contrast(${updatedStyle.contrast})`);
+      }
+      if (updatedStyle.saturate !== undefined) {
+        filterProperties.push(`saturate(${updatedStyle.saturate})`);
+      }
+  
+      updatedStyle.filter = filterProperties.join(" ");
+
     } else if (topic === "Vignette") {
       // Map the slider value to the desired vignette value
       valueRange = [0, 30];
@@ -205,7 +221,7 @@ export default function BasicTabs() {
                           style={{
                             width: "100%",
                             height: "100%",
-                            ...imageStyle,
+                            filter: imageStyle.filter,
                           }} />
             
                       </TransformComponent>
