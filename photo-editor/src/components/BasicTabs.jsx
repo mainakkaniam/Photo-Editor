@@ -75,10 +75,7 @@ export default function BasicTabs() {
 
   const [value, setValue] = React.useState(0);
   const [topic, setTopic] = React.useState("Brightness");
-  const [imageStyle, setImageStyle] = React.useState({
-    filter: "brightness(100%)",
-    boxShadow: "0 0 0px rgba(0, 0, 0, 0.5)",
-  });
+  const [imageStyle, setImageStyle] = React.useState({});
 
   React.useEffect(() => {
     console.log(color.rgb)
